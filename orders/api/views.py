@@ -22,7 +22,7 @@ def add_order(request):
 	#
 	for product in request.data["products_id"]:
 		print(product)
-		response = requests.get("http://127.0.0.1:8001/products/fetch/?prod_id=%s" % product).json()
+		response = requests.get("http://nginx/api/v1/products/fetch/?prod_id=%s" % product).json()
 		print(response)
 		total_price += float(response[0]["price"])
 	#
