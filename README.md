@@ -1,4 +1,4 @@
-Microservices architecture based web application
+# Microservices architecture based web application
 
 This is and example web application based on microservices architecture. It has 3 decoupled and scalable services:
 
@@ -6,7 +6,7 @@ This is and example web application based on microservices architecture. It has 
 2. Order Management
 3. Email Sending
 
-#Technology Stack:
+Technology Stack:
 
 Python
 Django/Django REST Framework
