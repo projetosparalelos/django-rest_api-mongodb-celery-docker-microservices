@@ -37,6 +37,7 @@ services:
     restart: always
     depends_on:
       - mongod
+      - rabbitmq
     links:
       - mongod
       - rabbitmq

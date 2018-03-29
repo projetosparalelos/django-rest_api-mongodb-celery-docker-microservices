@@ -6,7 +6,7 @@ class Category(models.Model):
 
 
 class Product(models.Model):
-	category = models.ForeignKey(Category, on_delete=models.DO_NOTHING)
+	category = models.IntegerField()
 	name = models.CharField(max_length=100)
 	price = models.FloatField()
 	description = models.TextField()
