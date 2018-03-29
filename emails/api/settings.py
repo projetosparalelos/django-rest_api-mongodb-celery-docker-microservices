@@ -49,6 +49,7 @@ DATABASES = {
     'default': {
         'ENGINE': 'djongo',
         'NAME': 'emails',
+		'HOST': 'mongod',
     }
 }
 
@@ -66,14 +67,8 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATIC_ROOT = ''
 
-BROKER_URL = 'amqp://localhost:5672//'
-CELERY_RESULT_BACKEND = 'amqp://localhost:5672//'
-CELERY_ACCEPT_CONTENT = ['json']
-CELERY_TASK_SERIALIZER = 'json'
-CELERY_RESULT_SERIALIZER = 'json'
-
 EMAIL_HOST = "smtp.gmail.com"
 EMAIL_PORT = "587"
-EMAIL_HOST_USER = "logformat4@gmail.com"
-EMAIL_HOST_PASSWORD = "logformat444"
+EMAIL_HOST_USER = "your_email@gmail.com"
+EMAIL_HOST_PASSWORD = "your_email_password"
 EMAIL_USE_TLS = True

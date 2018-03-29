@@ -29,7 +29,7 @@ services:
 
   orders_web:
     build: ./orders
-    command: bash -c "python3 ./orders/manage.py makemigrations api && python3 ./orders/manage.py migrate api && python3 ./orders/manage.py runserver 0.0.0.0:8003"
+    command: bash -c "python3 ./orders/manage.py makemigrations api && python3 ./orders/manage.py migrate api && cd ./orders/api/ && celery -A api -l info && python3 ./orders/manage.py runserver 0.0.0.0:8003"
     volumes:
       - .:/code
     ports:
@@ -39,6 +39,7 @@ services:
       - mongod
     links:
       - mongod
+      - rabbitmq
 
   mongod:
     restart: always
@@ -46,6 +47,12 @@ services:
     ports:
       - 27017:27017
     command: mongod
+
+  rabbitmq:
+   restart: always
+   image: rabbitmq:latest
+   ports:
+     - 5672:5672
 
   nginx:
     build: ./web
