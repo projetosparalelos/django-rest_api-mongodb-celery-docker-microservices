@@ -5,3 +5,4 @@ psycopg2
 gunicorn
 requests
 django-rest-swagger
+celery
