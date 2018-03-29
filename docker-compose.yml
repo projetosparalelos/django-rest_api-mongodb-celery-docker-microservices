@@ -29,7 +29,7 @@ services:
 
   orders_web:
     build: ./orders
-    command: bash -c "python3 ./orders/manage.py makemigrations api && python3 ./orders/manage.py migrate api && cd ./orders/ && celery -A api -l info && python3 ./orders/manage.py runserver 0.0.0.0:8003"
+    command: bash -c "python3 ./orders/manage.py makemigrations api && python3 ./orders/manage.py migrate api && cd ./orders/ && celery -A api worker -l info && python3 ./orders/manage.py runserver 0.0.0.0:8003"
     volumes:
       - .:/code
     ports:
