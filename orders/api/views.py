@@ -13,10 +13,9 @@ from django.core import serializers
 def add_order(request):
 	print(request.data)
 	total_price = 0
-	order = Order()
-	order.customer_name = request.data["customer_name"]
-	order.customer_email = request.data["customer_email"]
-	order.items = []
+	customer_name = request.data["customer_name"]
+	customer_email = request.data["customer_email"]
+	items = []
 	#
 	#
 	#
@@ -26,15 +25,16 @@ def add_order(request):
 		print(response)
 		total_price += float(response[0]["price"])
 	#
-		order.items.append({
+		items.append({
 			"item_name": response[0]["name"],
 			"item_description": response[0]["description"],
 			"item_price": response[0]["price"],
 		})
-	order.total = total_price
+
+	new_order = Order.objects.create(customer_name=customer_name, customer_email=customer_email, items=items, total=total_price)
 	# order_json = json.dumps(order.__dict__)
 	#
-	send_email.delay(email=order.customer_email, total=order.total, name=order.customer_name)
+	send_email.delay(email=customer_email, total=total_price, name=customer_name)
 
 	return Response({"message": "Order successfully created! You'll get email soon"})
 
